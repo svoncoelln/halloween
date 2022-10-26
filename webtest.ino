@@ -10,7 +10,7 @@ ESP8266WebServer webserver(80);
 
 // Handle Root
 void rootPage() { 
-  webserver.send(200, "text/plain", "Check out https://siytek.com !"); 
+  webserver.send(200, "text/plain", "Hello World!"); 
 }
 
 // Handle 404
@@ -36,11 +36,12 @@ void setup() {
 
   // Start Web Server
   webserver.on("/", rootPage);
+  Serial.print("server.on");
   webserver.onNotFound(notfoundPage);
   webserver.begin();
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-
+// Listen for HTTP requests
+void loop(void){ 
+  webserver.handleClient(); 
 }
